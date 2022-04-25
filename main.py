@@ -25,8 +25,8 @@ async def on_ready():
 async def status_loop():
     await bot.change_presence(status = nextcord.Status.idle, activity = nextcord.Activity(name = next(status), type = nextcord.ActivityType.listening))
 
-for Filename in os.listdir('./cmds'):
-    if Filename.endswith('.py'):
-        bot.load_extension(f'cmds.{Filename[:-3]}')
+for Filename in os.listdir("./cmds"):
+    if Filename.endswith(".py"):
+        bot.load_extension(f"cmds.{Filename[:-3]}")
 
-bot.run(data['token'])
+bot.run(data["token"])
