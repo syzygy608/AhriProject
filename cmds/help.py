@@ -2,16 +2,13 @@ from nextcord.ext import commands
 from nextcord import Interaction, slash_command, Colour, Embed
 from datetime import datetime, timezone, timedelta
 
-guilds = []
 tz = timezone(timedelta(hours = +8))
 
-class Help(commands.Cog, name = "Help Command"):
+class Help(commands.Cog, name = "Help"):
     def __init__(self, bot: commands.Bot):
         self.bot = bot
-        for el in self.bot.guilds:
-            guilds.append(int(el))
 
-    @slash_command(description = "return help dashboard", guild_ids = guilds)
+    @slash_command(description = "return help dashboard", force_global = True)
     async def help(self, interaction: Interaction):
         embed = Embed(title = '機器人指令表', description = '阿梨bot version a0.0.4', color = Colour.brand_green(), timestamp = datetime.now(tz))
         embed.add_field(name = "`/bot`", value = "查看機器人相關介紹資訊", inline = False)
