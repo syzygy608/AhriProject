@@ -10,9 +10,10 @@ class Help(commands.Cog, name = "Help"):
 
     @slash_command(description = "return help dashboard", force_global = True)
     async def help(self, interaction: Interaction):
-        embed = Embed(title = "機器人指令表", description = "阿梨 bot version a0.0.4", color = Colour.brand_green(), timestamp = datetime.now(tz))
-        embed.add_field(name = "`/bot`", value = "查看機器人相關介紹資訊", inline = False)
-        embed.add_field(name = "`/ping`", value = "查看機器人延遲", inline = False)
+        embed = Embed(title = "機器人指令表", description = "阿梨 bot version a0.0.4", color = Colour.magenta(), timestamp = datetime.now(tz))
+        embed.add_field(name = "/bot", value = "查看機器人相關介紹資訊", inline = False)
+        embed.add_field(name = "/ping", value = "查看機器人延遲", inline = False)
+        embed.add_field(name = "/user_info", value = "查看使用者帳號資訊", inline = False)
         await interaction.send(embed = embed)
 
 def setup(bot: commands.Bot):
