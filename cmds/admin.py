@@ -17,6 +17,7 @@ class Admin(commands.Cog, name = "Admin"):
             await interaction.send(f"**Module {module} reloaded.**")
 
     @slash_command(description = "purge the specified amount of messages", force_global = True)
+    @application_checks.has_permissions(manage_messages = True)
     async def purge(self, interaction : Interaction, amount: int = SlashOption(name = "amount", description = "How many messages you want to remove?", required = True)):
         try:
             await interaction.channel.purge(limit = amount)
