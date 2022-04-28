@@ -16,6 +16,15 @@ class Admin(commands.Cog, name = "Admin"):
         else:
             await interaction.send(f"**Module {module} reloaded.**")
 
+    @slash_command(description = "purge the specified amount of messages", force_global = True)
+    async def purge(self, interaction : Interaction, amount: int = SlashOption(name = "amount", description = "How many messages you want to remove?", required = True)):
+        try:
+            await interaction.channel.purge(limit = amount)
+        except Exception as e:
+            await interaction.send(f"**{type(e).__name__}: {e}**")
+        else:
+            await interaction.send(f"**{amount} messages deleted.**")
+
 def setup(bot: commands.Bot):
     bot.add_cog(Admin(bot))
 

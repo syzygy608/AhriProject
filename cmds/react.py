@@ -37,7 +37,8 @@ class React(commands.Cog, name = "React"):
             "4. 校內疫情資訊（確診資訊）\n" +
             "5. 行事曆\n" + 
             "6. 常用連結\n" + 
-            "7. 美食地圖",
+            "7. 美食地圖\n" + 
+            "8. 天氣資訊",
             inline = False
         )
         embed.add_field(name = "幫助指令", value = "使用`/help`來查看你想要使用的指令", inline = False)
@@ -55,6 +56,22 @@ class React(commands.Cog, name = "React"):
         embed.add_field(name = "Created At", value = interaction.user.created_at.astimezone(tz).strftime('%Y-%m-%d %H:%M:%S'), inline = False)
         embed.set_thumbnail(url = interaction.user.avatar.url)
         embed.set_footer(text = f"{interaction.user.name}的個人資訊", icon_url = interaction.user.avatar.url)
+        await interaction.send(embed = embed)
+
+    @slash_command(description = "showing the frequently used links", force_global = True)
+    async def links(self, interaction: Interaction):
+        embed = Embed(title = "常用連結", description = "阿梨 bot version a0.0.4", color = Colour.magenta(), timestamp = datetime.now(tz))
+        links = {
+            "學校官網": "https://www.ccu.edu.tw/",
+            "單一入口": "https://portal.ccu.edu.tw/sso_index.php",
+            "選課系統": "http://kiki.ccu.edu.tw/~ccmisp06/cgi-bin/class/index.php",
+            "成績查詢系統": "http://kiki.ccu.edu.tw/~ccmisp06/cgi-bin/Query/",
+            "秘書室官網": "https://secretar.ccu.edu.tw/",
+            "資訊處官網": "https://it.ccu.edu.tw/",
+            "校內疫情資訊站": "https://www.ccu.edu.tw/2019-nCoV.php"
+        }
+        for key, items in links.items():
+            embed.add_field(name = f"🔶[{key}]", value = items, inline = False)
         await interaction.send(embed = embed)
 
 def setup(bot: commands.Bot):

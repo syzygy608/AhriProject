@@ -3,12 +3,13 @@ import nextcord
 from nextcord.ext import commands, tasks
 from itertools import cycle
 import os
+from dotenv import load_dotenv
+
+load_dotenv()
+token = os.getenv("BOT_TOKEN")
 
 intents = nextcord.Intents.default()
 intents.members = True
-
-with open("./config.json", 'r') as f:
-    data = json.load(f)
 
 status = cycle(
     ["使用/help來查看指令表", "中正資訊整理助手", "挖鳳梨大賽進行中..."])
@@ -29,4 +30,4 @@ for Filename in os.listdir("./cmds"):
     if Filename.endswith(".py"):
         bot.load_extension(f"cmds.{Filename[:-3]}")
 
-bot.run(data["token"])
+bot.run(token)
