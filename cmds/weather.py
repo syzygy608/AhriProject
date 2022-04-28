@@ -55,21 +55,21 @@ class Weather(commands.Cog, name = "Weather"):
         response = requests.get(f"{baseurl}{city}?Authorization={weather_token}&limit=1&elementName=WeatherDescription")
         rawdata = response.json()
         data = rawdata["records"]["locations"][0]
-        title = data['locationsName']
+        title = data["locationsName"]
 
         embed = Embed(title = F"{title} 氣象預報", description = "`<三天內氣象預報>`", color = Colour.magenta(), timestamp = datetime.now(tz))
-        element = data["location"][0]['weatherElement']
+        element = data["location"][0]["weatherElement"]
         count = 0
         for el in element:
-            for detail in el['time']:
+            for detail in el["time"]:
                 if count > 7 and count < 16:
-                    result = detail['elementValue'][0]['value'].split("。")
+                    result = detail["elementValue"][0]["value"].split("。")
                     temperature = result[2].split("氏")[1]
                     rain_possibility = result[1]
                     describe = result[0]
                     if int(rain_possibility.split()[1].replace("%", "")) >= 30:
                         describe += "🌧"
-                    embed.add_field(name = detail['startTime'], value = f"{temperature}\n{rain_possibility}\n{describe}", inline = False)
+                    embed.add_field(name = detail["startTime"], value = f"{temperature}\n{rain_possibility}\n{describe}", inline = False)
                 count += 1
         embed.set_thumbnail(url = "https://cdn.dribbble.com/users/2277649/screenshots/8498294/media/1f87fae49becc4fac866d70cbb5eca37.gif")
         await interaction.send(embed = embed)

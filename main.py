@@ -15,12 +15,12 @@ status = cycle(
     ["使用/help來查看指令表", "中正資訊整理助手", "挖鳳梨大賽進行中..."])
 
 bot = commands.Bot(command_prefix = '+', intents = intents)
-bot.remove_command('help')
+bot.remove_command("help")
 
 @bot.event
 async def on_ready():
     status_loop.start()
-    print(f'Logged in as {bot.user} (ID: {bot.user.id})')
+    print(f"Logged in as {bot.user} (ID: {bot.user.id})")
 
 @tasks.loop(seconds = 5)
 async def status_loop():

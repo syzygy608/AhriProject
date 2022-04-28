@@ -53,7 +53,7 @@ class React(commands.Cog, name = "React"):
             title = "使用者資訊", description = f"關於{interaction.user}", color = interaction.user.color, timestamp = datetime.now(tz)
         )
         embed.add_field(name = "Account ID", value = interaction.user.id, inline = False)
-        embed.add_field(name = "Created At", value = interaction.user.created_at.astimezone(tz).strftime('%Y-%m-%d %H:%M:%S'), inline = False)
+        embed.add_field(name = "Created At", value = interaction.user.created_at.astimezone(tz).strftime("%Y-%m-%d %H:%M:%S"), inline = False)
         embed.set_thumbnail(url = interaction.user.avatar.url)
         embed.set_footer(text = f"{interaction.user.name}的個人資訊", icon_url = interaction.user.avatar.url)
         await interaction.send(embed = embed)
