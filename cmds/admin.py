@@ -6,8 +6,13 @@ class Admin(commands.Cog, name = "Admin"):
         self.bot = bot
 
     @slash_command(description = "loading target cog", force_global = True)
-    @application_checks.is_owner()
-    async def reload(self, interaction: Interaction, module: str = SlashOption(name = "module", description = "Enter module's name", required = True)):
+    @application_checks.is_owner() # 機器人擁有者可以重載 cogs
+    async def reload(
+        self, 
+        interaction: Interaction, 
+        module: str = SlashOption(name = "module", description = "Enter module's name", required = True
+        )
+    ):
         try:
             self.bot.unload_extension(f"cmds.{module}")
             self.bot.load_extension(f"cmds.{module}")
@@ -18,7 +23,12 @@ class Admin(commands.Cog, name = "Admin"):
 
     @slash_command(description = "purge the specified amount of messages", force_global = True)
     @application_checks.has_permissions(manage_messages = True)
-    async def purge(self, interaction : Interaction, amount: int = SlashOption(name = "amount", description = "How many messages you want to remove?", required = True)):
+    async def purge(
+        self, 
+        interaction : Interaction, 
+        amount: int = SlashOption(name = "amount", description = "How many messages you want to remove?", required = True
+        )
+    ):
         try:
             await interaction.channel.purge(limit = amount)
         except Exception as e:
@@ -28,4 +38,3 @@ class Admin(commands.Cog, name = "Admin"):
 
 def setup(bot: commands.Bot):
     bot.add_cog(Admin(bot))
-

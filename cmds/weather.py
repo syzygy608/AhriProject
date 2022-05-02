@@ -1,10 +1,8 @@
-import json
 from nextcord.ext import commands
 from nextcord import __version__, Interaction, slash_command, Colour, Embed, SlashOption
 from datetime import datetime, timezone, timedelta
 import os
 import requests
-import json
 from dotenv import load_dotenv
 
 load_dotenv()
@@ -68,8 +66,8 @@ class Weather(commands.Cog, name = "Weather"):
                     rain_possibility = result[1]
                     describe = result[0]
                     if int(rain_possibility.split()[1].replace("%", "")) >= 30:
-                        describe += "🌧"
-                    embed.add_field(name = detail["startTime"], value = f"{temperature}\n{rain_possibility}\n{describe}", inline = False)
+                        rain_possibility += "🌧"
+                    embed.add_field(name = detail["startTime"], value = f"{temperature}\n{rain_possibility}\n{describe}")
                 count += 1
         embed.set_thumbnail(url = "https://cdn.dribbble.com/users/2277649/screenshots/8498294/media/1f87fae49becc4fac866d70cbb5eca37.gif")
         await interaction.send(embed = embed)
