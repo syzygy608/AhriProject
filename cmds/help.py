@@ -16,6 +16,8 @@ class Help(commands.Cog, name = "Help"):
         normal_embed.add_field(name = "/user_info", value = "查看使用者帳號資訊", inline = False)
         normal_embed.add_field(name = "/links", value = "查看常用連結", inline = False)
         normal_embed.add_field(name = "/weather", value = "查看縣市之三天內天氣預報", inline = False)
+        normal_embed.add_field(name = "/cov19", value = "查看中正最新疫情資訊", inline = False)
+
         await interaction.send(embed = normal_embed)
 
 def setup(bot: commands.Bot):
