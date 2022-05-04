@@ -37,7 +37,9 @@ class Cov19(commands.Cog, name = "Covid-19"):
                     embed.add_field(name = index_to_title[j], value = f"[相關連結](https://www.ccu.edu.tw/{href['href']})", inline = False)
                 else:
                     text = (td[j].text).replace("*", "x")
-                    embed.add_field(name = index_to_title[j], value = f"{text}", inline = False)   
+                    if text == "":
+                        text = "無"
+                    embed.add_field(name = index_to_title[j], value = f" {text} ", inline = False)   
 
         await interaction.send(embed = embed)
    
