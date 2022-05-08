@@ -24,9 +24,9 @@ class Cov19(commands.Cog, name = "Covid-19"):
         self.bot = bot
 
     @slash_command(description = "get the covid-19 information of CCU", force_global = True)
-    async def cov19(self, interaction : Interaction, ):
+    async def cov19(self, interaction : Interaction):
         await interaction.response.defer(with_message = True)
-        tr = getInfo()
+        tr = getInfo() # 回傳整個table
 
         embed = Embed(title = "中正疫情資訊", description = "`<最近三筆確診資訊>`", color = Colour.magenta(), timestamp = datetime.now(tz))
         for i in range(2, 5):

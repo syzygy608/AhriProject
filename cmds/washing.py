@@ -2,7 +2,6 @@ from discord import SlashOption
 from nextcord.ext import commands
 from nextcord import Interaction, slash_command, Colour, Embed, ui, ButtonStyle
 from datetime import datetime, timezone, timedelta
-import requests
 from bs4 import BeautifulSoup
 from selenium import webdriver
 import time
@@ -14,6 +13,7 @@ class Washing(commands.Cog, name = "Washing"):
         self.bot = bot
 
     @slash_command(description = "return washing machine dashboard", force_global = True)
+    @commands.cooldown(rate = 5, per = 5, type = commands.BucketType.user)
     async def washing_machine(
         self, 
         interaction: Interaction,
@@ -31,11 +31,10 @@ class Washing(commands.Cog, name = "Washing"):
     ):
         await interaction.response.defer(with_message = True)
         embed = Embed(title = "洗衣機狀態列", description = f'[洗衣站URL](http://monitor.isesa.com.tw/monitor/?code={place})', color = Colour.magenta(), timestamp = datetime.now(tz))
-        options = webdriver.EdgeOptions()
-        options.use_chromium = True
-        options.add_argument('headless')
+        options = webdriver.ChromeOptions() # 使用chromedriver
+        options.add_argument('headless') # 隱藏視窗
         options.add_argument("disable-gpu")
-        edge = webdriver.Chrome('./msedgedriver', options = options)
+        edge = webdriver.Chrome('./chromedriver', options = options)
         edge.get(f"http://monitor.isesa.com.tw/monitor/?code={place}",)
         time.sleep(1)
         soup = BeautifulSoup(edge.page_source, 'html.parser')

@@ -4,6 +4,7 @@
 - nextcord
 - BeautifulSoup
 - requests
+- Selenium
 
 ---
 
@@ -13,3 +14,4 @@
 - covid-19 info of CCU
 - CCU news
 - washing machine status
+- Bus info of CCU 
