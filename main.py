@@ -20,6 +20,11 @@ async def on_ready():
     status_loop.start()
     print(f"Logged in as {bot.user} (ID: {bot.user.id})")
 
+@bot.event
+async def on_command_error(ctx, error):
+	if isinstance(error, commands.CommandOnCooldown):
+		await ctx.send(f"指令的冷卻時間還有 {round(error.retry_after, 2)} 秒")
+
 @tasks.loop(seconds = 5) # 建立五秒更新一次機器人狀態的循環
 async def status_loop():
     await bot.change_presence(status = nextcord.Status.idle, activity = nextcord.Activity(name = next(status), type = nextcord.ActivityType.listening))

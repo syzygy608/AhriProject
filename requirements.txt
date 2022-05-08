@@ -1,2 +1,4 @@
 nextcord
 requests
+bs4
+selenium

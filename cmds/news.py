@@ -4,7 +4,6 @@ from nextcord import Interaction, slash_command, Colour, Embed, ui, ButtonStyle
 from datetime import datetime, timezone, timedelta
 import requests
 from bs4 import BeautifulSoup
-import time
  
 tz = timezone(timedelta(hours = +8))
 
