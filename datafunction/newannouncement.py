@@ -11,7 +11,7 @@ def get_data(): # 取得最新資訊 type: list
     news = []
     for s in context:
         t = []
-        link = url + s['href'].split('/')[1]
+        link = url + s['href'].split('/')[1].split(" ")[0]
         t.append(s.string)
         t.append(link)
         news.append(t)
