@@ -1,25 +1,33 @@
-import requests
+from selenium import webdriver
+from bs4 import BeautifulSoup
+import time
 
-class Auth():
-    def __init__(self, app_id, app_key):
-        self.app_id = app_id
-        self.app_key = app_key
 
-    def get_auth_header(self):
-        xdate = datetime.utcnow().strftime("%a, %d %b %Y %H:%M:%S GMT")
-        hashed = hmac.new(self.app_key.encode('utf8'), (f'x-date: {xdate}').encode('utf8'), sha1)
-        signature = base64.b64encode(hashed.digest()).decode()
-        authorization = (f'hmac username="{self.app_id}", algorithm="hmac-sha1"' +
-                         f', headers="x-date", signature="{signature}"')
-        return {
-            'Authorization': authorization,
-            'x-date': xdate,
-            'Accept-Encoding': 'gzip'
-        }
+def busID_status(busID):
 
-app_id = "5a3dc309cf854788a53d775058b194c1"
+    driverPATH = './chromedriver' # driver 路徑
+    options = webdriver.ChromeOptions() # 使用chromedriver
+    # options = webdriver.EdgeOptions() # 使用edgedriver
+    # options.use_chromium = True
+    options.add_argument('headless')
+    options.add_argument("disable-gpu")
 
-auth = Auth(app_id, app_key)
-url = "https://ptx.transportdata.tw/MOTC/v2/Rail/TRA/LiveBoard/Station/4060?%24top=30&%24format=JSON"
-response = requests.get(url, headers=auth.get_auth_header())
-print(response.json())
+    edge = webdriver.Chrome(driverPATH, options = options)
+    edge.get(f"https://www.taiwanbus.tw/eBUSPage/Query/QueryResult.aspx?rno={busID}",)
+    # 路線編號
+    # 7309: rno=73090
+    #  106: rno=07460
+    # 7306: rno=73060
+
+    time.sleep(1)
+    soup = BeautifulSoup(edge.page_source, 'html.parser')
+    stop = soup.find_all("div", {"class": "bus-route__stop"})
+
+    stations = []
+    for tag in stop:
+        name = tag.find('a', {"class": "bus-route__stop-name"})
+        status = tag.find('div', {"class": "bus-route__stop-status"})
+        stationdir = {"name": name.text, "time": status.text}
+        stations.append(stationdir)
+
+    return stations #stations["name"]: 站名,  stations["time"]: 進站時間
