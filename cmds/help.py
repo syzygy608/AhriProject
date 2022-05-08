@@ -19,6 +19,7 @@ class Help(commands.Cog, name = "Help"):
         embed.add_field(name = "/cov19", value = "查看中正最新疫情資訊", inline = False)
         embed.add_field(name = "/news", value = "查看中正最新消息/公告", inline = False)
         embed.add_field(name = "/bus_info", value = "查看中正周邊公車資訊", inline = False)
+        embed.add_field(name = "/train_info", value = "查看中正周邊火車資訊", inline = False)
         await interaction.send(embed = embed)
 
 def setup(bot: commands.Bot):

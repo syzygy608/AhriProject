@@ -4,17 +4,12 @@ import time
 
 from datetime import datetime,timezone,timedelta
 
-# 提醒一下：
-# 我用的是 chromedriver
-# 如果要用 edge 要小改一下
 
 def busID_status(ID):
     busIDs = {"7309": "73090", "106": "07460", "7306": "73060"}
 
     driverPATH = './chromedriver' # driver 路徑
     options = webdriver.ChromeOptions() # 使用chromedriver
-    # options = webdriver.EdgeOptions() # 使用edgedriver
-    # options.use_chromium = True
     options.add_argument('headless')
     options.add_argument("disable-gpu")
 
@@ -49,8 +44,7 @@ def train_station(stationID, dirction): # stationID= 0: 民雄,  1: 嘉義. dirc
 
     driverPATH = './chromedriver' # driver 路徑
     options = webdriver.ChromeOptions() # 使用chromedriver
-    # options = webdriver.EdgeOptions() # 使用edgedriver
-    # options.use_chromium = True
+
     options.add_argument('headless')
     options.add_argument("disable-gpu")
 
@@ -72,12 +66,12 @@ def train_station(stationID, dirction): # stationID= 0: 民雄,  1: 嘉義. dirc
                 way.append(c.text)
             way = ''.join(way)
             arriveTime = tds[2].text
-            if arriveTime > dt: # 除存還未經過的車
+            if arriveTime > dt: # 儲存還未經過的車
                 train = {"name": name,
                          "way": way,
                          "time": arriveTime
                          }
                 trains.append(train)
 
-    return trains #trans["name"]: name, trans["way"]: 出發->抵達, trans["time"]: 到站時間
+    return trains #trians["name"]: name, trians["way"]: 出發->抵達, trians["time"]: 到站時間
 # print(train_station(0, 0))
