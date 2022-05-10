@@ -4,7 +4,7 @@ from nextcord import Interaction, slash_command, Colour, Embed, ui, ButtonStyle
 from datetime import datetime, timezone, timedelta
 import requests
 from bs4 import BeautifulSoup
- 
+
 tz = timezone(timedelta(hours = +8))
 
 def get_data(): # 取得最新資訊 type: list
