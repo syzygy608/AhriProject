@@ -4,7 +4,6 @@ import time
 
 from datetime import datetime,timezone,timedelta
 
-
 def busID_status(ID, direction):
     busIDs = {"7309": "73090", "106": "07460", "7306": "73060"}
 
