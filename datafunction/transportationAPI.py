@@ -1,18 +1,19 @@
 import time
 from wsgiref.handlers import format_date_time
-from datetime import datetime,timezone,timedelta
+from datetime import datetime, timezone, timedelta
 from hashlib import sha1
 import hmac
 import base64
 import requests
-import json
+import os
+from dotenv import load_dotenv
+
+load_dotenv()
 
 class Auth():
     def __init__(self):
-        with open("transAPI.json", newline='') as f:
-            data = json.load(f)
-        self.app_id = data['app_id']
-        self.app_key = data['app_key']
+        self.app_id = os.getenv("APP_ID")
+        self.app_key = os.getenv("APP_KEY")
 
     def get_auth_header(self):
         xdate = format_date_time(time.mktime(datetime.now().timetuple()))
