@@ -48,25 +48,7 @@ def train_station(stationID, direction):# stationID= 0: 民雄,  1: 嘉義. dire
             trains.append(t)
     return trains
 
-def busID_status(id, dirction):# dirction 方向 0: 順行 1: 逆行
-    # busIDs = {"7309": "73090", "106": "07460", "7306": "73060"} 不用這個
-
-    auth = Auth()
-    if id == '7309' or id == '7306':
-        url = f"https://ptx.transportdata.tw/MOTC/v2/Bus/EstimatedTimeOfArrival/Streaming/InterCity/{id}?%24format=JSON"
-    # elif id == '106':
-    response = requests.get(url, headers=auth.get_auth_header())
-    data = response.json()
-    a = data[0]
-    print(a)
-    for info in data:
-        # print(info)
-        if info['Direction'] == dirction:
-            print(info['StopName']['Zh_tw'])
-            print(info['EstimateTime'])
-
-busID_status('7309', 0)
-# def busID_status(ID):
+# def busID_status(ID, dirction):
 #     busIDs = {"7309": "73090", "106": "07460", "7306": "73060"}
 #
 #     driverPATH = './chromedriver' # driver 路徑

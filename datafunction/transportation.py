@@ -5,7 +5,7 @@ import time
 from datetime import datetime,timezone,timedelta
 
 
-def busID_status(ID):
+def busID_status(ID, direction):
     busIDs = {"7309": "73090", "106": "07460", "7306": "73060"}
 
     driverPATH = './chromedriver' # driver 路徑
@@ -19,6 +19,8 @@ def busID_status(ID):
     # 7309: rno=73090
     #  106: rno=07460
     # 7306: rno=73060
+    if(direction):
+        edge.find_element_by_id('pills-back').click()
 
     time.sleep(1)
     soup = BeautifulSoup(edge.page_source, 'html.parser')
@@ -33,9 +35,9 @@ def busID_status(ID):
 
     return stations #stations["name"]: 站名,  stations["time"]: 進站時間
 
-# print(busID_status("106"))
+print(busID_status("7309", 0))
 
-def train_station(stationID, dirction): # stationID= 0: 民雄,  1: 嘉義. dirction= 0:順行, 1:逆行
+def train_station(stationID, direction): # stationID= 0: 民雄,  1: 嘉義. direction= 0:順行, 1:逆行
     stationPATH = ["4060-%E6%B0%91%E9%9B%84", "4080-%E5%98%89%E7%BE%A9"]
 
     # 現在時間
@@ -55,7 +57,7 @@ def train_station(stationID, dirction): # stationID= 0: 民雄,  1: 嘉義. dirc
     context = soup.find_all("tbody")
 
     trains = []
-    trs = context[dirction].find_all('tr')
+    trs = context[direction].find_all('tr')
     for tr in trs:
         tds = tr.find_all('td')
         if len(tds):
