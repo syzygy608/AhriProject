@@ -34,6 +34,7 @@ class Washing(commands.Cog, name = "Washing"):
         options = webdriver.ChromeOptions() # 使用chromedriver
         options.add_argument('headless') # 隱藏視窗
         options.add_argument("disable-gpu")
+        options.add_argument('blink-settings=imagesEnabled=false')
         edge = webdriver.Chrome('./chromedriver', options = options)
         edge.get(f"http://monitor.isesa.com.tw/monitor/?code={place}",)
         time.sleep(1)

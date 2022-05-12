@@ -15,6 +15,22 @@ import base64
 
 load_dotenv()
 
+class PageButton(ui.Button):
+    def __init__(self, id, emojis, embeds):
+        super().__init__(emoji = emojis)
+        self.id = id
+        self.embeds = embeds
+    
+    async def callback(self, interaction: Interaction):
+        await interaction.response.edit_message(embed = self.embeds[self.id], view = self.view)
+
+class PageView(ui.View):
+    def __init__(self, embeds):
+        super().__init__()
+        emojis = ["1⃣", "2⃣", "3⃣", "4⃣", "5⃣"]
+        for i in range(len(embeds)):
+            self.add_item(PageButton(i, emojis[i], embeds))
+
 class Auth():
     def __init__(self):
         self.app_id = os.getenv("APP_ID")
@@ -119,15 +135,17 @@ class Transportation(commands.Cog, name = "transportation"):
             "07460": "106",
             "73060": "7306"
         }
-        des = ""
-        for i in range(len(stations)):
-            des += f"**{stations[i]['name']}** - {stations[i]['time']}"
-            if (i + 1) % 2 == 0:
-                des += "\n"
-            else:
-                des += "⠀⠀⠀⠀⠀⠀"
-        embed = Embed(title = f"{compare[line]} {direction_list[direction]}", description = des, color = Colour.magenta(), timestamp = datetime.now(tz))
-        await interaction.send(embed = embed)
+        embeds = []
+        for i in range(round(len(stations) / 20)):
+            temp = Embed(title = f"{compare[line]} {direction_list[direction]}", description = "`<公車路線狀態>`", color = Colour.magenta(), timestamp = datetime.now(tz))
+            temp_stations = stations[i * 20 : i * 20 + 20]
+            for station in temp_stations:
+                temp.add_field(name = station['name'], value = station['time'])
+            embeds.append(temp)
+        if len(embeds) == 1:
+            await interaction.send(embed = embeds[0])
+        else:
+            await interaction.send(embed = embeds[0], view = PageView(embeds))
 
     @slash_command(description = "get the train information", force_global = True)
     @commands.cooldown(rate = 5, per = 5, type = commands.BucketType.user)
