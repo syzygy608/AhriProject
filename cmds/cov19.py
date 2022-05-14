@@ -5,11 +5,11 @@ import requests
 from bs4 import BeautifulSoup
 
 index_to_title = {
-    0: "確診日期",
-    1: "確診者身分",
-    3: "課程",
-    6: "備註"
+    0: "日期",
+    1: "確診人數",
+    4: "備註"
 }
+
 tz = timezone(timedelta(hours = +8))
 
 def getInfo():
@@ -31,16 +31,16 @@ class Cov19(commands.Cog, name = "Covid-19"):
         embed = Embed(title = "中正疫情資訊", description = "`<最近三筆確診資訊>`", color = Colour.magenta(), timestamp = datetime.now(tz))
         for i in range(2, 5):
             td = tr[i].find_all("td")
-            for j in [0, 1, 3, 6]:
+            for j in [0, 1, 4]:
                 href = td[j].find("a", href = True)
                 if href != None:
-                    embed.add_field(name = index_to_title[j], value = f"[相關連結](https://www.ccu.edu.tw/{href['href']})", inline = False)
+                    embed.add_field(name = index_to_title[j], value = f"[相關連結](https://www.ccu.edu.tw/{href['href']})", inline = True)
                 else:
                     text = (td[j].text).replace("*", "x")
                     if text == "":
                         text = "無"
-                    embed.add_field(name = index_to_title[j], value = f" {text} ", inline = False)   
-
+                    embed.add_field(name = index_to_title[j], value = f" {text} ", inline = True)   
+        embed.set_image(url = "https://www.chla.org/sites/default/files/thumbnails/image/CHLA-What-You-Should-Know-Covid-19-1200x628-02.png")
         await interaction.send(embed = embed)
    
 def setup(bot: commands.Bot):
