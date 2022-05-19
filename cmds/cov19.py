@@ -28,7 +28,7 @@ class Cov19(commands.Cog, name = "Covid-19"):
         await interaction.response.defer(with_message = True)
         tr = getInfo() # 回傳整個table
 
-        embed = Embed(title = "中正疫情資訊", description = "`<最近三筆確診資訊>`", color = Colour.magenta(), timestamp = datetime.now(tz))
+        embed = Embed(title = "中正疫情資訊", description = "`<最近三筆確診資訊>`", color = Colour.dark_gold(), timestamp = datetime.now(tz))
         for i in range(2, 5):
             td = tr[i].find_all("td")
             for j in [0, 1, 4]:
@@ -40,7 +40,7 @@ class Cov19(commands.Cog, name = "Covid-19"):
                     if text == "":
                         text = "無"
                     embed.add_field(name = index_to_title[j], value = f" {text} ", inline = True)   
-        embed.set_image(url = "https://www.chla.org/sites/default/files/thumbnails/image/CHLA-What-You-Should-Know-Covid-19-1200x628-02.png")
+        embed.set_image(url = "https://i.imgur.com/WyDiNMK.png")        
         await interaction.send(embed = embed)
    
 def setup(bot: commands.Bot):

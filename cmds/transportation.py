@@ -137,7 +137,7 @@ class Transportation(commands.Cog, name = "transportation"):
         }
         embeds = []
         for i in range(round(len(stations) / 20)):
-            temp = Embed(title = f"{compare[line]} {direction_list[direction]}", description = "`<公車路線狀態>`", color = Colour.magenta(), timestamp = datetime.now(tz))
+            temp = Embed(title = f"{compare[line]} {direction_list[direction]}", description = "`<公車路線狀態>`", color = Colour.dark_gold(), timestamp = datetime.now(tz))
             temp_stations = stations[i * 20 : i * 20 + 20]
             for station in temp_stations:
                 temp.add_field(name = station['name'], value = station['time'])
@@ -177,7 +177,7 @@ class Transportation(commands.Cog, name = "transportation"):
         trains = train_station(station, direction)
         station_list = ["民雄", "嘉義"]
         direction_list = ["順行", "逆行"]
-        embed = Embed(title = f"{station_list[station]}{direction_list[direction]} 火車資訊", description = "`<嘉義、民雄火車資訊>`", color = Colour.magenta(), timestamp = datetime.now(tz))
+        embed = Embed(title = f"{station_list[station]}{direction_list[direction]} 火車資訊", description = "`<嘉義、民雄火車資訊>`", color = Colour.dark_gold(), timestamp = datetime.now(tz))
         for train in trains:
             embed.add_field(name = f"{train['type']} {train['id']} {train['way']}", value = train['time'])
         await interaction.send(embed = embed)

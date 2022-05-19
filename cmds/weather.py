@@ -55,7 +55,7 @@ class Weather(commands.Cog, name = "Weather"):
         data = rawdata["records"]["locations"][0]
         title = data["locationsName"]
 
-        embed = Embed(title = F"{title} 氣象預報", description = "`<三天內氣象預報>`", color = Colour.magenta(), timestamp = datetime.now(tz))
+        embed = Embed(title = F"{title} 氣象預報", description = "`<三天內氣象預報>`", color = Colour.dark_gold(), timestamp = datetime.now(tz))
         element = data["location"][0]["weatherElement"]
         count = 0
         for el in element:

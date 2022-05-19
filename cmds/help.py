@@ -26,7 +26,7 @@ class Help(commands.Cog, name = "Help"):
     @slash_command(description = "return help dashboard", force_global = True)
     async def help(self, interaction: Interaction):
         
-        normalEmbed = Embed(title = "機器人指令表", description = "`<一般指令>`", color = Colour.magenta(), timestamp = datetime.now(tz))
+        normalEmbed = Embed(title = "機器人指令表", description = "`<一般指令>`", color = Colour.dark_gold(), timestamp = datetime.now(tz))
         normalEmbed.add_field(name = "/bot", value = "查看機器人相關介紹資訊", inline = False)
         normalEmbed.add_field(name = "/ping", value = "查看機器人延遲", inline = False)
         normalEmbed.add_field(name = "/ping", value = "顯示機器人延遲數據", inline = False)
@@ -35,7 +35,7 @@ class Help(commands.Cog, name = "Help"):
         normalEmbed.add_field(name = "/purge", value = "*清除訊息", inline = False)
         normalEmbed.set_footer(text = "*為管理員專用指令")
 
-        toolEmbed = Embed(title = "機器人指令表", description = "`<資訊指令>`", color = Colour.magenta(), timestamp = datetime.now(tz))
+        toolEmbed = Embed(title = "機器人指令表", description = "`<資訊指令>`", color = Colour.dark_gold(), timestamp = datetime.now(tz))
         
         toolEmbed.add_field(name = "/links", value = "查看常用連結", inline = False)
         toolEmbed.add_field(name = "/weather", value = "查看縣市之三天內天氣預報", inline = False)

@@ -62,10 +62,11 @@ class Washing(commands.Cog, name = "Washing"):
         )
     ):
         await interaction.response.defer(with_message = True)
-        embed = Embed(title = "洗衣機狀態列", description = f'[洗衣站URL](http://monitor.isesa.com.tw/monitor/?code={place})', color = Colour.magenta(), timestamp = datetime.now(tz))
+        embed = Embed(title = "洗衣機狀態列", description = f'[洗衣站URL](http://monitor.isesa.com.tw/monitor/?code={place})', color = Colour.dark_gold(), timestamp = datetime.now(tz))
         data = get_washing_info(place)
         embed.add_field(name = "[洗衣機狀態]", value = f"空機 🟢: {data[0]['space']}\n運轉結束 🟡: {data[0]['finish']}\n運轉中 🔴: {data[0]['working']}")
         embed.add_field(name = "[脫衣機狀態]", value = f"空機 🟢: {data[1]['space']}\n運轉結束 🟡: {data[1]['finish']}\n運轉中 🔴: {data[1]['working']}")
+        embed.set_image(url = "https://i.imgur.com/WyDiNMK.png")
         await interaction.send(embed = embed)
 
 def setup(bot: commands.Bot):

@@ -29,7 +29,7 @@ class News(commands.Cog, name = "News"):
     @slash_command(description = "return CCU news", force_global = True)
     async def news(self, interaction: Interaction,):
         await interaction.response.defer(with_message = True)
-        embed = Embed(title = "中正最新消息", description = f'[最新消息來源](https://www.ccu.edu.tw/bullentin_list.php?id=1)', color = Colour.magenta(), timestamp = datetime.now(tz))
+        embed = Embed(title = "中正最新消息", description = f'[最新消息來源](https://www.ccu.edu.tw/bullentin_list.php?id=1)', color = Colour.dark_gold(), timestamp = datetime.now(tz))
         ccu_news = get_data()
         for news in ccu_news:
             embed.add_field(name = news[0], value = f"[開啟連結]({news[1]})", inline = False)

@@ -1,5 +1,5 @@
 from nextcord.ext import commands
-from nextcord import __version__, Interaction, slash_command, Colour, Embed
+from nextcord import __version__, Interaction, slash_command, Colour, Embed, File
 from datetime import datetime, timezone, timedelta
 
 tz = timezone(timedelta(hours = +8))
@@ -10,7 +10,7 @@ class React(commands.Cog, name = "React"):
 
     @slash_command(description = "return with latency", force_global = True)
     async def ping(self, interaction: Interaction):
-        embed = Embed(title = "機器人延遲狀態", description = "Pong !", color = Colour.magenta(), timestamp = datetime.now(tz))
+        embed = Embed(title = "機器人延遲狀態", description = "Pong !", color = Colour.dark_gold(), timestamp = datetime.now(tz))
         embed.add_field(name = "Bot Latency", value = f"{round(self.bot.latency * 1000)} ms")
         await interaction.send(embed = embed)
 
@@ -43,7 +43,7 @@ class React(commands.Cog, name = "React"):
         )
         embed.add_field(name = "幫助指令", value = "使用`/help`來查看你想要使用的指令", inline = False)
         embed.set_thumbnail(url = self.bot.user.avatar.url)
-        embed.set_image(url = "https://cdngarenanow-a.akamaihd.net/webmain/static/pss/lol/items_splash/ahri_27.jpg")
+        embed.set_image(url = "https://i.imgur.com/WyDiNMK.png")
         embed.set_footer(text = "你的中正資訊小助手")
         await interaction.send(embed = embed)
 
@@ -60,7 +60,7 @@ class React(commands.Cog, name = "React"):
 
     @slash_command(description = "showing the frequently used links", force_global = True)
     async def links(self, interaction: Interaction):
-        embed = Embed(title = "常用連結", description = "阿梨 bot version a0.0.4", color = Colour.magenta(), timestamp = datetime.now(tz))
+        embed = Embed(title = "常用連結", description = "阿梨 bot version a0.0.4", color = Colour.dark_gold(), timestamp = datetime.now(tz))
         links = {
             "學校官網": "https://www.ccu.edu.tw/",
             "單一入口": "https://portal.ccu.edu.tw/sso_index.php",
