@@ -28,10 +28,8 @@ class Help(commands.Cog, name = "Help"):
         
         normalEmbed = Embed(title = "機器人指令表", description = "`<一般指令>`", color = Colour.dark_gold(), timestamp = datetime.now(tz))
         normalEmbed.add_field(name = "/bot", value = "查看機器人相關介紹資訊", inline = False)
-        normalEmbed.add_field(name = "/ping", value = "查看機器人延遲", inline = False)
         normalEmbed.add_field(name = "/ping", value = "顯示機器人延遲數據", inline = False)
         normalEmbed.add_field(name = "/user_info", value = "查看使用者帳號資訊", inline = False)
-        normalEmbed.add_field(name = "/reload", value = "*重新載入模塊", inline = False)
         normalEmbed.add_field(name = "/purge", value = "*清除訊息", inline = False)
         normalEmbed.set_footer(text = "*為管理員專用指令")
 
@@ -43,6 +41,7 @@ class Help(commands.Cog, name = "Help"):
         toolEmbed.add_field(name = "/news", value = "查看中正最新消息/公告", inline = False)
         toolEmbed.add_field(name = "/bus_info", value = "查看中正周邊公車資訊", inline = False)
         toolEmbed.add_field(name = "/train_info", value = "查看中正周邊火車資訊", inline = False)
+        toolEmbed.add_field(name = "/calender", value = "查看中正大學本月行事曆資訊", inline = False)
 
         embeds = [normalEmbed, toolEmbed]
 
