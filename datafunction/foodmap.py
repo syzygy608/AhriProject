@@ -1,7 +1,7 @@
 import requests
 import json
 
-def get_resturants():
+def get_resturants(): # type: list
     overpass_url = "http://overpass-api.de/api/interpreter"
     overpass_query = """
     [out:json];
@@ -13,10 +13,15 @@ def get_resturants():
     data = response.json()
     restaurants = []
     for r in data['elements']:
-        restaurants.append(r['tags']['name'])
-    return restaurants
+        info = {'name':r['tags']['name'], # node name
+                'link': "https://www.openstreetmap.org/node/" + str(r['id']) #node link
+               }
+        restaurants.append(info)
+    return restaurants # restaurants['name']:餐廳名稱, restaurants['link']: 位置連結
 
-print(get_resturants())
+R = get_resturants()
+print(R)
+print(R[2]['name'], R[2]['link'])
 
 # node(around:800.00,23.557038,120.471707)["amenity"="restaurant"];
 #
