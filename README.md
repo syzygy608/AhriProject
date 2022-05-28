@@ -31,7 +31,7 @@
 - CCU news
 - washing machine status
 - Bus and train's info of CCU
-- school calender
+- school calendar
 
 ## Commands
 1. bot
