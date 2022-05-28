@@ -13,7 +13,7 @@ class Calender(commands.Cog, name = "Calender"):
         self.bot = bot
 
     @slash_command(description = "get the calender of this month", force_global = True)
-    async def calender(self, interaction: Interaction):
+    async def calendar(self, interaction: Interaction):
         embed = Embed(title = "中正大學本月行事曆", description = f'[行事曆來源](https://www.ccu.edu.tw/calender.php)', color = Colour.dark_gold(), timestamp = datetime.now(tz))
         time_now = datetime.now(tz).strftime('%Y%m')
         embed.add_field(name = time_now, value = data[time_now])

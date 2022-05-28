@@ -13,11 +13,11 @@
     - hashlib
     - base64
 
-4. Calender
+4. Calendar
     - pandas
     - openpyxl
 
-5. others
+5. Others
     - time
     - json
     - wsgiref.handlers
@@ -54,5 +54,5 @@
     - 查看中正周邊公車資訊
 10. train_info
     - 查看中正周邊火車資訊
-11. calender
+11. calendar
     - 查看中正大學本月行事曆資訊
