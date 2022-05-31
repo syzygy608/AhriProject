@@ -1,11 +1,11 @@
-from nextcord.ext import commands, application_checks
-from nextcord import Interaction, slash_command, Colour, Embed, SlashOption
+from nextcord.ext import commands
+from nextcord import Interaction, slash_command, Colour, Embed
 import json
 from datetime import datetime, timezone, timedelta
 
 tz = timezone(timedelta(hours = +8))
 
-with open("./calender/data.json", encoding = "utf8") as jfile:
+with open("./calendar/data.json", encoding = "utf8") as jfile:
     data = json.load(jfile)
 
 class Calender(commands.Cog, name = "Calender"):
@@ -17,7 +17,7 @@ class Calender(commands.Cog, name = "Calender"):
         embed = Embed(title = "中正大學本月行事曆", description = f'[行事曆來源](https://www.ccu.edu.tw/calender.php)', color = Colour.dark_gold(), timestamp = datetime.now(tz))
         time_now = datetime.now(tz).strftime('%Y%m')
         embed.add_field(name = time_now, value = data[time_now])
-        embed.set_image(url = "https://i.imgur.com/WyDiNMK.png")
+        embed.set_image(url = "https://i.imgur.com/sGx2Z9M.png")
         await interaction.send(embed = embed)
 
 def setup(bot: commands.Bot):

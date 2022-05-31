@@ -141,7 +141,9 @@ class Transportation(commands.Cog, name = "transportation"):
             temp_stations = stations[i * 20 : i * 20 + 20]
             for station in temp_stations:
                 temp.add_field(name = station['name'], value = station['time'])
+            temp.set_thumbnail(url = "https://i.imgur.com/MevJHHw.png")
             embeds.append(temp)
+        
         if len(embeds) == 1:
             await interaction.send(embed = embeds[0])
         else:
@@ -179,7 +181,8 @@ class Transportation(commands.Cog, name = "transportation"):
         direction_list = ["順行", "逆行"]
         embed = Embed(title = f"{station_list[station]}{direction_list[direction]} 火車資訊", description = "`<嘉義、民雄火車資訊>`", color = Colour.dark_gold(), timestamp = datetime.now(tz))
         for train in trains:
-            embed.add_field(name = f"{train['type']} {train['id']} {train['way']}", value = train['time'])
+            embed.add_field(name = f"{train['type']}{train['id']}{train['way']}", value = train['time'])
+        embed.set_thumbnail(url = "https://i.imgur.com/hBY25n5.png")
         await interaction.send(embed = embed)
 
 def setup(bot: commands.Bot):

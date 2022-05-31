@@ -1,5 +1,5 @@
 from nextcord.ext import commands
-from nextcord import Interaction, slash_command, Colour, Embed, ui, ButtonStyle
+from nextcord import Interaction, slash_command, Colour, Embed, ui
 from datetime import datetime, timezone, timedelta
 
 tz = timezone(timedelta(hours = +8))

@@ -1,6 +1,5 @@
-from discord import SlashOption
 from nextcord.ext import commands
-from nextcord import Interaction, slash_command, Colour, Embed, ui, ButtonStyle
+from nextcord import Interaction, slash_command, Colour, Embed
 from datetime import datetime, timezone, timedelta
 import requests
 from bs4 import BeautifulSoup
@@ -33,6 +32,7 @@ class News(commands.Cog, name = "News"):
         ccu_news = get_data()
         for news in ccu_news:
             embed.add_field(name = news[0], value = f"[開啟連結]({news[1]})", inline = False)
+        embed.set_thumbnail(url = "https://i.imgur.com/5PLhiwr.png")
         await interaction.send(embed = embed)
 
 def setup(bot: commands.Bot):

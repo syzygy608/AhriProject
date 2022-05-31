@@ -2,3 +2,5 @@ nextcord
 requests
 bs4
 selenium
+pandas
+openpyxl

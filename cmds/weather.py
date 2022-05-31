@@ -69,7 +69,7 @@ class Weather(commands.Cog, name = "Weather"):
                         rain_possibility += "🌧"
                     embed.add_field(name = detail["startTime"], value = f"{temperature}\n{rain_possibility}\n{describe}")
                 count += 1
-        embed.set_thumbnail(url = "https://cdn.dribbble.com/users/2277649/screenshots/8498294/media/1f87fae49becc4fac866d70cbb5eca37.gif")
+        embed.set_thumbnail(url = "https://i.imgur.com/N15sqOn.png")
         await interaction.send(embed = embed)
    
 def setup(bot: commands.Bot):

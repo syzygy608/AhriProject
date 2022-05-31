@@ -1,5 +1,5 @@
 from nextcord.ext import commands
-from nextcord import __version__, Interaction, slash_command, Colour, Embed, File
+from nextcord import __version__, Interaction, slash_command, Colour, Embed
 from datetime import datetime, timezone, timedelta
 
 tz = timezone(timedelta(hours = +8))
@@ -43,7 +43,7 @@ class React(commands.Cog, name = "React"):
         )
         embed.add_field(name = "幫助指令", value = "使用`/help`來查看你想要使用的指令", inline = False)
         embed.set_thumbnail(url = self.bot.user.avatar.url)
-        embed.set_image(url = "https://i.imgur.com/WyDiNMK.png")
+        embed.set_image(url = "https://i.imgur.com/sGx2Z9M.png")
         embed.set_footer(text = "你的中正資訊小助手")
         await interaction.send(embed = embed)
 
@@ -72,6 +72,7 @@ class React(commands.Cog, name = "React"):
         }
         for key, items in links.items():
             embed.add_field(name = f"🔶[{key}]", value = items, inline = False)
+        embed.set_thumbnail(url = "https://i.imgur.com/5PLhiwr.png")
         await interaction.send(embed = embed)
 
 def setup(bot: commands.Bot):

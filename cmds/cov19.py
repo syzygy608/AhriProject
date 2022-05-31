@@ -1,5 +1,5 @@
 from nextcord.ext import commands
-from nextcord import __version__, Interaction, slash_command, Colour, Embed, SelectOption, ui
+from nextcord import __version__, Interaction, slash_command, Colour, Embed
 from datetime import datetime, timezone, timedelta
 import requests
 from bs4 import BeautifulSoup
@@ -40,7 +40,7 @@ class Cov19(commands.Cog, name = "Covid-19"):
                     if text == "":
                         text = "無"
                     embed.add_field(name = index_to_title[j], value = f" {text} ", inline = True)   
-        embed.set_image(url = "https://i.imgur.com/WyDiNMK.png")        
+        embed.set_image(url = "https://i.imgur.com/hiYOyUD.png")        
         await interaction.send(embed = embed)
    
 def setup(bot: commands.Bot):
