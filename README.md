@@ -1,10 +1,12 @@
 # Ahri Bot
+The Discord bot of information assistant for CCU using nextcord
+Program Design (II) Final Project
 
 ## Local Development Steps
 1. Creating Discord bot following this website [links here](https://docs.nextcord.dev/en/stable/discord.html)
 2. Sign up for Weather API in this website [links here](https://opendata.cwb.gov.tw/index)
 3. Sign up for Bus API in this website [links here](https://ptx.transportdata.tw/MOTC/)
-4. Download webdriver for web crawler (we use chrome in this project, you can modify the code for using with other browers)
+4. Download webdriver for web crawler (we use chrome in this project, you can modify the code to use other browsers)
 5. Add your token in step 1, 2 and 3 to env.sample and rename the file to .env
 6. Run 'pip install -r requirements.txt' before 'python main.py'
 
