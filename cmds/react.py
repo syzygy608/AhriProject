@@ -23,7 +23,7 @@ class React(commands.Cog, name = "React"):
                 "專屬於中正大學師生的資訊統整助手\n\n" +
                 "꙳✧˖°⌖꙳✧˖°⌖꙳✧˖°⌖꙳✧˖°⌖꙳✧˖°⌖꙳✧˖°⌖꙳✧˖°⌖꙳✧˖°\n"
                 , 
-            color = Colour.magenta(), 
+            color = Colour.dark_gold(), 
             timestamp = datetime.now(tz)
         )
         embed.add_field(name = "開發語言", value = f"Python 3")

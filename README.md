@@ -8,7 +8,7 @@ Program Design (II) Final Project
 3. Sign up for Bus API in this website [links here](https://ptx.transportdata.tw/MOTC/)
 4. Download webdriver for web crawler (we use chrome in this project, you can modify the code to use other browsers)
 5. Add your token in step 1, 2 and 3 to env.sample and rename the file to .env
-6. Run 'pip install -r requirements.txt' before 'python main.py'
+6. Run `pip install -r requirements.txt` before `python main.py`
 
 ## Package
 1. Discord
