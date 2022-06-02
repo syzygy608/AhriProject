@@ -42,6 +42,7 @@ Program Design (II) Final Project
 - washing machine status
 - Bus and train's info of CCU
 - school calendar
+- restaurant find
 
 ## Commands
 1. bot
@@ -66,3 +67,5 @@ Program Design (II) Final Project
     - 查看中正周邊火車資訊
 11. calendar
     - 查看中正大學本月行事曆資訊
+12. restaurant
+    - 查看中正周邊美食
