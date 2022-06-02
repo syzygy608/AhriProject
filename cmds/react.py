@@ -71,7 +71,8 @@ class React(commands.Cog, name = "React"):
             "校內疫情資訊站": "https://www.ccu.edu.tw/2019-nCoV.php"
         }
         for key, items in links.items():
-            embed.add_field(name = f"🔶[{key}]", value = items, inline = False)
+            emoji = "<a:arrow:981828049635004426>"
+            embed.add_field(name = f"{emoji} {key}", value = items, inline = False)
         embed.set_thumbnail(url = "https://i.imgur.com/5PLhiwr.png")
         await interaction.send(embed = embed)
 

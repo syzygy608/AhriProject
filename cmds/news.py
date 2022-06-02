@@ -28,10 +28,11 @@ class News(commands.Cog, name = "News"):
     @slash_command(description = "return CCU news", force_global = True)
     async def news(self, interaction: Interaction,):
         await interaction.response.defer(with_message = True)
+        emoji = "<a:arrow:981828049635004426>"
         embed = Embed(title = "中正最新消息", description = f'[最新消息來源](https://www.ccu.edu.tw/bullentin_list.php?id=1)', color = Colour.dark_gold(), timestamp = datetime.now(tz))
         ccu_news = get_data()
         for news in ccu_news:
-            embed.add_field(name = news[0], value = f"[開啟連結]({news[1]})", inline = False)
+            embed.add_field(name = f"{emoji} {news[0]}", value = f"[開啟連結]({news[1]})", inline = False)
         embed.set_thumbnail(url = "https://i.imgur.com/5PLhiwr.png")
         await interaction.send(embed = embed)
 

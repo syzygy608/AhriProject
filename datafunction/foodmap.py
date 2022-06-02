@@ -20,8 +20,9 @@ def get_resturants(): # type: list
     return restaurants # restaurants['name']:餐廳名稱, restaurants['link']: 位置連結
 
 R = get_resturants()
-print(R)
-print(R[2]['name'], R[2]['link'])
+
+for element in R:
+    print(element)
 
 # node(around:800.00,23.557038,120.471707)["amenity"="restaurant"];
 #
