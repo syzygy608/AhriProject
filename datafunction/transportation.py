@@ -5,7 +5,6 @@ import time
 from datetime import datetime,timezone,timedelta
 
 def busID_status(ID, direction):
-    busIDs = {"7309": "73090", "106": "07460", "7306": "73060"}
 
     driverPATH = './chromedriver' # driver 路徑
     options = webdriver.ChromeOptions() # 使用chromedriver
@@ -13,28 +12,38 @@ def busID_status(ID, direction):
     options.add_argument("disable-gpu")
 
     edge = webdriver.Chrome(driverPATH, options = options)
-    edge.get(f"https://www.taiwanbus.tw/eBUSPage/Query/QueryResult.aspx?rno={busIDs[ID]}")
+    edge.get(f"https://yunbus.tw/lite/route.php?id=THB{ID}")
     # 路線編號
-    # 7309: rno=73090
-    #  106: rno=07460
-    # 7306: rno=73060
-    if(direction):
-        edge.find_element_by_id('pills-back').click()
-
+    # 7309: 73090
+    # 7306: 73060
     time.sleep(1)
     soup = BeautifulSoup(edge.page_source, 'html.parser')
-    stop = soup.find_all("div", {"class": "bus-route__stop"})
+    if direction == 0:
+        direction = "go"
+    else:
+        direction = "bk"
+    fonts = soup.find("table", {"id": direction}).find_all("font")
 
     stations = []
-    for tag in stop:
-        name = tag.find('a', {"class": "bus-route__stop-name"})
-        status = tag.find('div', {"class": "bus-route__stop-status"})
-        stationdir = {"name": name.text, "time": status.text}
-        stations.append(stationdir)
+    type = 0
+    status = ""
+    for i in range(len(fonts)):
+        if not i:
+            continue
+        if fonts[i].string:
+            if type == 0:
+                type += 1
+                status = fonts[i].string
+            else:
+                type = 0
+                name = fonts[i].string
+                stationdir = {"name": name, "time": status}
+                stations.append(stationdir)
 
     return stations #stations["name"]: 站名,  stations["time"]: 進站時間
 
-print(busID_status("7309", 0))
+data = busID_status("73060", 1)
+
 
 def train_station(stationID, direction): # stationID= 0: 民雄,  1: 嘉義. direction= 0:順行, 1:逆行
     stationPATH = ["4060-%E6%B0%91%E9%9B%84", "4080-%E5%98%89%E7%BE%A9"]
