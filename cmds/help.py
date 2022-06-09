@@ -42,6 +42,9 @@ class Help(commands.Cog, name = "Help"):
         toolEmbed.add_field(name = "/bus_info", value = "查看中正周邊公車資訊", inline = False)
         toolEmbed.add_field(name = "/train_info", value = "查看中正周邊火車資訊", inline = False)
         toolEmbed.add_field(name = "/calendar", value = "查看中正大學本月行事曆資訊", inline = False)
+        toolEmbed.add_field(name = "/restaurant_list", value = "查看中正大學附近的餐廳列表", inline = False)
+        toolEmbed.add_field(name = "/restaurant_pick", value = "隨機查看中正大學附近的一間餐廳", inline = False)
+        toolEmbed.add_field(name = "/washing_machine", value = "查看中正洗衣部洗衣機狀態", inline = False)
 
         embeds = [normalEmbed, toolEmbed]
 
