@@ -49,30 +49,40 @@ class Auth():
         }
 
 def busID_status(ID, direction):
+
     driverPATH = './chromedriver' # driver 路徑
     options = webdriver.ChromeOptions() # 使用chromedriver
     options.add_argument('headless')
     options.add_argument("disable-gpu")
-    options.add_argument('blink-settings=imagesEnabled=false')
-    edge = webdriver.Chrome(driverPATH, options = options)
-    edge.get(f"https://www.taiwanbus.tw/eBUSPage/Query/QueryResult.aspx?rno={ID}")
-    # 路線編號
-    # 7309: rno=73090
-    #  106: rno=07460
-    # 7306: rno=73060
-    if(direction):
-        edge.find_element_by_id('pills-back').click()
 
+    edge = webdriver.Chrome(driverPATH, options = options)
+    edge.get(f"https://yunbus.tw/lite/route.php?id=THB{ID}")
+    # 路線編號
+    # 7309: 73090
+    # 7306: 73060
     time.sleep(1)
     soup = BeautifulSoup(edge.page_source, 'html.parser')
-    stop = soup.find_all("div", {"class": "bus-route__stop"})
+    if direction == 0:
+        direction = "go"
+    else:
+        direction = "bk"
+    fonts = soup.find("table", {"id": direction}).find_all("font")
 
     stations = []
-    for tag in stop:
-        name = tag.find('a', {"class": "bus-route__stop-name"})
-        status = tag.find('div', {"class": "bus-route__stop-status"})
-        stationdir = {"name": name.text, "time": status.text}
-        stations.append(stationdir)
+    type = 0
+    status = ""
+    for i in range(len(fonts)):
+        if not i:
+            continue
+        if fonts[i].string:
+            if type == 0:
+                type += 1
+                status = fonts[i].string
+            else:
+                type = 0
+                name = fonts[i].string
+                stationdir = {"name": name, "time": status}
+                stations.append(stationdir)
 
     return stations #stations["name"]: 站名,  stations["time"]: 進站時間
 
@@ -113,7 +123,6 @@ class Transportation(commands.Cog, name = "transportation"):
             description = "choose the train line you want to look up.",
             choices = {
                 "7309": "73090",
-                "106": "07460",
                 "7306": "73060"
             }),
             direction: int = SlashOption
@@ -132,7 +141,6 @@ class Transportation(commands.Cog, name = "transportation"):
         direction_list = ["順行", "逆行"]
         compare = {
             "73090": "7309",
-            "07460": "106",
             "73060": "7306"
         }
         embeds = []
